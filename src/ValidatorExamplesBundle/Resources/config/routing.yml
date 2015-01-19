@@ -1,0 +1,19 @@
+validator_demo_1:
+    path:     /validatordemo1
+    defaults: { _controller: ValidatorExamplesBundle:Welcome:indexOne }
+    
+validator_demo_2:
+    path:     /validatordemo2
+    defaults: { _controller: ValidatorExamplesBundle:Welcome:indexTwo }
+    
+validator_demo_3:
+    path:     /validatordemo3
+    defaults: { _controller: ValidatorExamplesBundle:Welcome:indexThree }
+    
+validator_demo_4:
+    path:     /validatordemo4
+    defaults: { _controller: ValidatorExamplesBundle:Welcome:indexFour }
+    
+validator_demo_5:
+    path:     /validatordemo5
+    defaults: { _controller: ValidatorExamplesBundle:Welcome:indexFive }

@@ -1,0 +1,29 @@
+ValidatorExamplesBundle\EntitiesOne\AbstractUser:
+    properties:
+        firstName:
+            - NotBlank: { groups: [mygroup] }
+            - Type: { type: string, groups: [mygroup] }
+        lastName:
+            - NotBlank: { groups: [mygroup] }
+            - Type: { type: string, groups: [mygroup] }
+        
+ValidatorExamplesBundle\EntitiesOne\MyUser:
+    properties:
+        age:
+            - NotBlank: { groups: [mygroup] }
+            - Type: { type: integer, groups: [mygroup] }
+        aliases:
+            - NotBlank: { groups: [mygroup] }
+            - Type: { type: array, groups: [mygroup] }
+            - All:
+                - NotBlank: { groups: [mygroup] }
+                - Type: { type: string, groups: [mygroup] }
+                - Length: { min: 3, groups: [mygroup] }
+        email:
+            - NotBlank: { groups: [mygroup] }
+            - Type: { type: string, groups: [mygroup] }
+            - Email: { checkMX: false, strict: false, groups: [mygroup] }
+        birthdate:
+            - NotNull: { groups: [mygroup] }
+            - Type: { type: object, groups: [mygroup] }
+            - DateTime: { groups: [mygroup] }
