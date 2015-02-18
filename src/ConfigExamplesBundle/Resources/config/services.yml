@@ -1,6 +1,8 @@
 #    config_examples.example:
 #        class: ConfigExamplesBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+parameters:
+    config_path: "%kernel.root_dir%/config/config"
 services:
     config_examples.config_controller:
         class: ConfigExamplesBundle\Controller\ConfigController
@@ -17,3 +19,11 @@ services:
         arguments:
             - loader1
             - loader2
+    config_examples.yaml_loader:
+        class: ConfigExamplesBundle\Loader\YamlFileLoader
+        arguments: locator
+    config_examples.url_locator:
+        class: ConfigExamplesBundle\Locator\UrlLocator
+        arguments:
+    config_examples.file_locator:
+        class: Symfony\Component\Config\FileLocator

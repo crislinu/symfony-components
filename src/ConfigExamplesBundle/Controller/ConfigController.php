@@ -21,7 +21,7 @@ class ConfigController extends Controller
         $file = $request->get('file');
         $abtest = $request->get('abtest');
 
-        $configuration = $this->configService->loadConfiguration($uris);
+        $configuration = $this->configService->loadConfiguration($file);
         var_dump($configuration);
 
         return new Response('It works ');
