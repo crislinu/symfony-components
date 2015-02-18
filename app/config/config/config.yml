@@ -1,0 +1,4 @@
+configuration:
+    version: 1.2
+    user: cata
+    test: true

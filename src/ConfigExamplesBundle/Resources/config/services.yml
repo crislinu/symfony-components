@@ -4,3 +4,16 @@
 services:
     config_examples.config_controller:
         class: ConfigExamplesBundle\Controller\ConfigController
+        arguments:
+            - @config_examples.config_service
+    config_examples.config_service:
+        class: ConfigExamplesBundle\Services\ConfigService
+        arguments: [@config_examples.config_delegating_loader]
+    config_examples.config_delegating_loader:
+        class: Symfony\Component\Config\Loader\DelegatingLoader
+        arguments: [@config_examples.config_resolver]
+    config_examples.config_resolver:
+        class: Symfony\Component\Config\Loader\LoaderResolver
+        arguments:
+            - loader1
+            - loader2
