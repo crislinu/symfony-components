@@ -1,0 +1,6 @@
+#    config_examples.example:
+#        class: ConfigExamplesBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+services:
+    config_examples.config_controller:
+        class: ConfigExamplesBundle\Controller\ConfigController
