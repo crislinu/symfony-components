@@ -9,6 +9,4 @@ class AbtestFileLoader extends YamlFileLoader
             PATHINFO_EXTENSION
         ) && $type == 'abtest';
     }
-
-
 }

@@ -11,19 +11,27 @@ services:
     config_examples.config_service:
         class: ConfigExamplesBundle\Services\ConfigService
         arguments: [@config_examples.config_delegating_loader]
+#loaders    
     config_examples.config_delegating_loader:
         class: Symfony\Component\Config\Loader\DelegatingLoader
         arguments: [@config_examples.config_resolver]
+    #chain of responsability
     config_examples.config_resolver:
         class: Symfony\Component\Config\Loader\LoaderResolver
-        arguments:
-            - loader1
-            - loader2
+        arguments: 
+            - [@config_examples.yaml_loader, @config_examples.abtest_loader]
     config_examples.yaml_loader:
         class: ConfigExamplesBundle\Loader\YamlFileLoader
-        arguments: locator
+        arguments: [@config_examples.file_locator_config]
+    config_examples.abtest_loader:
+        class: ConfigExamplesBundle\Loader\AbtestFileLoader
+        arguments: [@config_examples.url_locator]
+    
+#locators
     config_examples.url_locator:
         class: ConfigExamplesBundle\Locator\UrlLocator
-        arguments:
-    config_examples.file_locator:
+        arguments: [@config_examples.file_locator_config]
+#the default locator
+    config_examples.file_locator_config:
         class: Symfony\Component\Config\FileLocator
+        arguments: [%config_path%]

@@ -1,5 +1,5 @@
 <?php
-namespace ConfigExamplesBundle\Sevices;
+namespace ConfigExamplesBundle\Services;
 
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -16,19 +16,29 @@ class ConfigService
 
     public function loadConfiguration($uri, $type = null)
     {
-        $this->addResourcesToLoade($uri, $type);
-        foreach ($this->resourcesToLoad as $value) {
-            $config = $this->loader->load($value['file']);
+        $config = array();
+        $this->addResourcesToLoad($uri, $type);
+        // the last resource to load is the current resource
+        $this->resourcesToLoad = array_reverse($this->resourcesToLoad);
+        foreach ($this->resourcesToLoad as $key => $value) {
+            if (is_string($key)) {
+                $currentConfig = $this->loader->load($value, $key);
+            } else {
+                $currentConfig = $this->loader->load($value);
+            }
+            
+            $config = array_replace_recursive($config, $currentConfig);
         }
 
         return $config;
     }
 
-    public function addResourcesToLoade($uri, $type = null)
+    public function addResourcesToLoad($uri, $type = null)
     {
-        $this->resourcesToLoad[]['file'] = $uri;
         if ($type) {
-            $this->resourcesToLoad[]['type'] = $type;
+            $this->resourcesToLoad[$type] = $uri;
+        } else {
+            $this->resourcesToLoad[] = $uri;
         }
     }
 
