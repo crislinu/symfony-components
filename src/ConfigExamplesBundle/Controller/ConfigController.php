@@ -24,6 +24,7 @@ class ConfigController extends Controller
             $this->configService->addResourcesToLoad($abtest, 'abtest');
         }
         $configuration = $this->configService->loadConfiguration($file);
+        var_dump("RESULT:");
         var_dump($configuration);
 
         return new Response('It works ');

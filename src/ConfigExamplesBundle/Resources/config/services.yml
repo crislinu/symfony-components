@@ -3,6 +3,7 @@
 #        arguments: [@service_id, "plain_value", %parameter%]
 parameters:
     config_path: "%kernel.root_dir%/config/config"
+    abtests_path: "%kernel.root_dir%/config/abtests"
 services:
     config_examples.config_controller:
         class: ConfigExamplesBundle\Controller\ConfigController
@@ -11,7 +12,7 @@ services:
     config_examples.config_service:
         class: ConfigExamplesBundle\Services\ConfigService
         arguments: [@config_examples.config_delegating_loader]
-#loaders    
+#delegating loader    
     config_examples.config_delegating_loader:
         class: Symfony\Component\Config\Loader\DelegatingLoader
         arguments: [@config_examples.config_resolver]
@@ -20,18 +21,22 @@ services:
         class: Symfony\Component\Config\Loader\LoaderResolver
         arguments: 
             - [@config_examples.yaml_loader, @config_examples.abtest_loader]
+#loaders
     config_examples.yaml_loader:
         class: ConfigExamplesBundle\Loader\YamlFileLoader
-        arguments: [@config_examples.file_locator_config]
+        arguments: [@config_examples.yaml_locator]
     config_examples.abtest_loader:
         class: ConfigExamplesBundle\Loader\AbtestFileLoader
-        arguments: [@config_examples.url_locator]
+        arguments: [@config_examples.abtest_locator]
     
 #locators
-    config_examples.url_locator:
-        class: ConfigExamplesBundle\Locator\UrlLocator
-        arguments: [@config_examples.file_locator_config]
+    config_examples.yaml_locator:
+        class: ConfigExamplesBundle\Locator\YamlLocator
+        arguments: [%config_path%, @config_examples.file_locator]
+    config_examples.abtest_locator:
+        class: ConfigExamplesBundle\Locator\AbtestLocator
+        arguments: [%abtests_path%, @config_examples.file_locator]
 #the default locator
-    config_examples.file_locator_config:
+    config_examples.file_locator:
         class: Symfony\Component\Config\FileLocator
-        arguments: [%config_path%]
+#        arguments: [%config_path%]

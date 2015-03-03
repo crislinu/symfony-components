@@ -3,10 +3,16 @@ namespace ConfigExamplesBundle\Loader;
 
 class AbtestFileLoader extends YamlFileLoader
 {
-    public function supports($resource, $type = null) {
-         return is_string($resource) && 'yml' === pathinfo(
-            $resource,
-            PATHINFO_EXTENSION
-        ) && $type == 'abtest';
+    /**
+     *
+     * @param type $resource
+     * @param type $type
+     * @return type
+     */
+    public function supports($resource, $type = null)
+    {
+        // If we want o load same filename from within different location
+        // we have to avoid using 'yml' === pathinfo($resource, PATHINFO_EXTENSION)
+        return is_string($resource) && $type == 'abtest';
     }
 }
