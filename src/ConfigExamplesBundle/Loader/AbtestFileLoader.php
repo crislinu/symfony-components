@@ -1,6 +1,8 @@
 <?php
 namespace ConfigExamplesBundle\Loader;
 
+use ConfigExamplesBundle\Loader\YamlFileLoader;
+
 class AbtestFileLoader extends YamlFileLoader
 {
     /**

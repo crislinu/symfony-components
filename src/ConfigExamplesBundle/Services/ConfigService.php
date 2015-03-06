@@ -23,6 +23,7 @@ class ConfigService
         $this->resourcesToLoad = array_reverse($this->resourcesToLoad);
         //@todo checking cache for fetching the merged result
         foreach ($this->resourcesToLoad as $key => $value) {
+            var_dump($value);
             //@todo checking cache for fetching the current resource
             if (is_string($key)) {
                 $currentConfig = $this->loader->load($value, $key);

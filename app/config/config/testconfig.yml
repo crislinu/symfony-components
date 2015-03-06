@@ -1,0 +1,5 @@
+configuration:
+    name: testconfig
+    version: 2.0
+    user: cata
+    test: true

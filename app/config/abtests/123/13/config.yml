@@ -1,0 +1,5 @@
+configuration:
+    version: 1.13
+    user: cata
+    test: true
+    type: abtest
