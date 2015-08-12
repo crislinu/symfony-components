@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             
             new ValidatorExamplesBundle\ValidatorExamplesBundle(),
             new ConfigExamplesBundle\ConfigExamplesBundle(),
+            new OptionsResolverExamplesBundle\OptionsResolverExamplesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

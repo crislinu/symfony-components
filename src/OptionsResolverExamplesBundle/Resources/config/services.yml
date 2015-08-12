@@ -1,0 +1,7 @@
+services:
+    optionsresolver_controller:
+        class: OptionsResolverExamplesBundle\Controller\OptionsResolverController
+        arguments:
+            - @optionsresolver_service
+    optionsresolver_service:
+        class: OptionsResolverExamplesBundle\Services\OptionsResolverService

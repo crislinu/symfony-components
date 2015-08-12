@@ -1,0 +1,15 @@
+options_resolver_classic_mailer_example:
+    path:     /mailer/classic
+    defaults: { _controller: optionsresolver_controller:classicMailerAction }
+
+options_resolver_optionsresolver_mailer_example:
+    path:     /mailer/resolver
+    defaults: { _controller: optionsresolver_controller:optionsResolverMailerAction }
+
+options_resolver_google_mailer_example:
+    path:     /mailer/google
+    defaults: { _controller: optionsresolver_controller:googleMailerAction }
+
+options_resolver_requuired_google_mailer_example:
+    path:     /mailer/google/required
+    defaults: { _controller: optionsresolver_controller:getRequiredOptForGoogleMailerAction }

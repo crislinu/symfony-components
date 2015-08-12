@@ -1,3 +1,7 @@
+options_resolver_examples:
+    resource: "@OptionsResolverExamplesBundle/Resources/config/routing.yml"
+    prefix:   /optionsresolver
+
 config_examples:
     resource: "@ConfigExamplesBundle/Resources/config/routing.yml"
     prefix:   /config
