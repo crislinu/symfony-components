@@ -20,7 +20,7 @@ This project is based on Symfony 2.6 and will contain example code on how to use
 127.0.0.1       symfony-components.local
 ```
 
-  * Un the *vhost* file (for wamp in <apache_dir>/conf/extra/httpd-vhosts.conf) add a new virtual host section
+  * In the *vhost* file (for wamp in <apache_dir>/conf/extra/httpd-vhosts.conf) add a new virtual host section
 
 ```
 <VirtualHost *:80>
@@ -77,6 +77,7 @@ LoadModule rewrite_module modules/mod_rewrite.so
         * in apache configuration file(<apache_dir>/conf/httpd.conf) add the following line: `SetEnv PLATFORM_ENV dev`
 
 * After all project files are in place you have to install all dependencies
+	* run `composer install`
     * run `php app/console cache:clear --env=prod` 
         * the `env=prod` is for web/app.php entry point, if you don't specify any env, then the default `dev` is used. In the dev environment the entry point should be `web/app_dev.php`
 

@@ -2,6 +2,7 @@
 namespace OptionsResolverExamplesBundle\Services;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\Options;
 
 class GoogleMailer extends Mailer
 {
@@ -24,7 +25,7 @@ class GoogleMailer extends Mailer
         parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
-            'host' => 'smtp.google.com'
+            'host' => 'smtp.google.com',
         ));
 
         // Added new constraint, required options
@@ -37,12 +38,38 @@ class GoogleMailer extends Mailer
         // Type validation
 //        $resolver->setAllowedTypes('port', 'int');
 
+
         // Value validation
 //        $resolver->setDefault('transport', 'mail');
 //        $resolver->setAllowedValues('transport', array('mail', 'smtp'));
 //        $resolver->addAllowedValues('transport', 'sendmail');
 
 
+        // Normalization
+//         $resolver->setNormalizer('host', function ($options, $value) {
+//            if ('http://' !== substr($value, 0, 7)) {
+//                if ($options['to'] == 'radu') {
+//                  $value = 'https://'.$value;
+//                } else {
+//                  $value = 'http://'.$value;
+//                }
+//
+//            }
+//
+//            return $value;
+//        });
+//
+
+        // Default values that depend on another option
+        $resolver->setDefault('encryption', null);
+
+        $resolver->setDefault('port', function (Options $options) {
+            if ('ssl' === $options['encryption']) {
+                return 465;
+            }
+
+            return 25;
+        });
     }
 
     public function getTo()

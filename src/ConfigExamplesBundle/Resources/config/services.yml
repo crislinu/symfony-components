@@ -13,14 +13,14 @@ services:
     config_examples.config_service:
         class: ConfigExamplesBundle\Services\ConfigService
         arguments: [@config_examples.config_delegating_loader]
-#delegating loader    
+#delegating loader
     config_examples.config_delegating_loader:
         class: Symfony\Component\Config\Loader\DelegatingLoader
         arguments: [@config_examples.config_resolver]
     #chain of responsability
     config_examples.config_resolver:
         class: Symfony\Component\Config\Loader\LoaderResolver
-        arguments: 
+        arguments:
             - [@config_examples.yaml_loader, @config_examples.abtest_loader]
 #loaders
     config_examples.yaml_loader:
@@ -29,7 +29,7 @@ services:
     config_examples.abtest_loader:
         class: ConfigExamplesBundle\Loader\AbtestFileLoader
         arguments: [@config_examples.abtest_locator]
-    
+
 #locators
     config_examples.yaml_locator:
         class: ConfigExamplesBundle\Locator\YamlLocator
@@ -46,4 +46,4 @@ services:
         class: ConfigExamplesBundle\CacheWarmer\AbtestCacheWarmer
         arguments: [@config_examples.abtest_loader, %attests_cache_path%]
         tags:
-            - {kernel.cache_warmer}
+            - { name: kernel.cache_warmer }

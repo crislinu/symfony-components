@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * http://symfony.com/doc/current/components/options_resolver.html
+ */
 class OptionsResolverController extends Controller
 {
     private $optionsResolverService;
@@ -63,11 +66,10 @@ class OptionsResolverController extends Controller
 
 
     /**
-     * Configuring the optionsResolver for:
-     * -
+     * Configuring the OptionsResolver
      * @param OptionsResolver $resolver
      */
-    public function configureOptionsExample1(OptionsResolver $resolver)
+    private function configureOptionsExample1(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'host' => 'localhost',

@@ -12,7 +12,7 @@ class ClassicMailer
 
     public function __construct($options)
     {
-        /*
+        /* the old bad ugly way
         $this->setHost(isset($options['host'])
             ? $options['host']
             : 'localhost');
@@ -30,6 +30,7 @@ class ClassicMailer
             : '25');
         */
 
+        // more likely, but you can do better
         $this->options = array_replace(array(
             'host'     => 'smtp.example.org',
             'username' => 'user',
